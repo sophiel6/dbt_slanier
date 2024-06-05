@@ -44,7 +44,7 @@ select
     null as curriculum_type,
     null as language,
     null as license_status,
-    right(`License Monitoring Since`, 10)::date as license_issued,
+    cast(right(`License Monitoring Since`, 10) as date) as license_issued,
     null as license_number,
     null as license_renewed,
     `Type License` as license_type,
@@ -61,4 +61,5 @@ select
     null as operator,
     null as schedule,
     null as facility_type
+    
 from brightwheel.source2
