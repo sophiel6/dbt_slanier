@@ -1,41 +1,4 @@
 /*
-
-last_name
-first-name
-title
-company
-street as address1
-null as address2
-city
-state
-postal_code as zip
-country
-phone as phone1
-mobile_phone 
-email
-website
-current_enrollment_c as current_enrollment,
-capacity_c as capacity,
-  ,
-  brightwheel_school_uuid_c as provider_id
-
-
-leads table
-salesforce_lead_id
-lead_source,
-  status,
-  is_converted,
-  created_date,
-  last_modified_date,
-  last_activity_date,
-  last_viewed_date,
-  last_referenced_date,
-  email_bounced_date,
-  email_bounced_reason,
-  outreach_stage_c,
-lead_source_last_updated_c
-
-
 accepts_financial_aid character varying
 ages_served character varying
 --capacity numeric
@@ -71,8 +34,8 @@ facility_type character varying
 */
 
 SELECT 
-    id as salesforce_lead_id,
-    is_deleted,
+
+    concat(first_name, " ", last_name) as full_contact_name,
     last_name,
     first_name,
     title,
@@ -90,7 +53,8 @@ SELECT
     website,
     current_enrollment_c as current_enrollment,
     capacity_c as capacity,
-    salesforce_lead_id
+    id as salesforce_lead_id,
+    is_deleted,
     lead_source,
     status,
     is_converted,
