@@ -16,8 +16,8 @@ select
     `Address2` as address2,
     `City` as city,
     `State` as state,
-    `Zip` as zip,
-    null as county,
+    cast(`Zip` as string) as zip,
+    string(null) as county,
     'US' as country,
     
     concat(
@@ -27,8 +27,8 @@ select
         "1", replace(replace(replace(replace(`Phone`, '-', ''), '(', ''), ')', ''), ' ', '')
     ) as mobile_phone,
     `Email` as email,
-    null as website,
-    null as current_enrollment,
+    string(null) as website,
+    string(null) as current_enrollment,
     `Total Cap` as capacity,
     null as salesforce_lead_id,
     null as is_deleted,
@@ -61,19 +61,23 @@ select
     null as license_renewed,
     `Type License` as license_type,
     null as licensee_name, 
-    case
-        when `AA4` is null
-        then
-            case
-                when `AA3` is null
-                then 
-                    case when `AA2` is null then `Ages Accepted 1` 
-                    else `AA2` end
-                else `AA3`
-            end
-        else `AA4`
-    end as max_age, 
-    `Ages Accepted 1` as min_age,
+
+-- Previously I'd added this logic for min_age and max_age, before realizing they needed to be integers
+    -- case
+    --     when `AA4` is null
+    --     then
+    --         case
+    --             when `AA3` is null
+    --             then 
+    --                 case when `AA2` is null then `Ages Accepted 1` 
+    --                 else `AA2` end
+    --             else `AA3`
+    --         end
+    --     else `AA4`
+    -- end as max_age, 
+    -- `Ages Accepted 1` as min_age,
+    null as max_age,
+    null as min_age,
     null as operator,
     null as schedule,
     null as facility_type 
